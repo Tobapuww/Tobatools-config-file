@@ -1,10 +1,10 @@
-# 刷机逻辑配置文件
+# 刷机逻辑配置文件（以秋词移植包为例，同样兼容官方包）
 # 适配者仅需：改顶部机型名 + 增删下面的指令行 即可完成适配
 device:OP5551L1
 
-# 先进入bootloader，优先刷写recovery分区 (单槽刷写)
+# 先进入bootloader，优先刷写recovery分区
 bootloader
--recovery
+-recovery_ab
 
 # 自动重启进入fastbootd，刷写所有核心分区+逻辑分区（核心步骤，不可乱序）
 # 规则：_ab = 双槽刷写(AB分区)  |  del = 删除旧分区  |  add 1M = 创建分区(大小1M)  不指定_ab为默认槽位或A-Only
@@ -36,7 +36,7 @@ fastbootd
 -xbl_config_ab
 -xbl_ramdump_ab
 
-# ---- 逻辑分区：先删除所有旧分区+COW残留 (必须先删后建，防砖核心) ----
+# ---- 逻辑分区：先删除所有旧分区+COW残留 (必须先删后建) ----
 -my_bigball del
 -my_carrier del
 -my_company del
@@ -73,6 +73,8 @@ fastbootd
 -system_ext add 1M
 -vendor add 1M
 -vendor_dlkm add 1M
+
+# ---- 创建完成后刷写 ----
 -my_bigball
 -my_carrier
 -my_company
