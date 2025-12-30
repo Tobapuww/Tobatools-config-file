@@ -46,8 +46,7 @@ fastbootd模式（用户空间fastboot）支持操作：部分物理分区刷写
 补充说明：小米/红米/POCO系列设备的bootloader为魔改增强版本，仅额外支持逻辑分区的刷写操作，仍不支持逻辑分区的删除与创建，该类操作仍需切换至fastbootd模式执行。OPPO、一加、真我、ViVO、华为全系设备严格遵循原生规则，无魔改内容。
 
 ### 完整配置文件标准示例-OP5551L1
-``
-device:OP5551L1
+``device:OP5551L1
 
 bootloader
 -recovery_ab
@@ -140,8 +139,7 @@ fastbootd
 bootloader
 -modem_ab
 
-system
-``
+system``
 
 ### 零基础机型适配步骤-通用标准流程
 步骤1：修改配置文件首行的设备标识，将device:OP5551L1替换为目标机型的代号，格式不变。
