@@ -1,0 +1,107 @@
+# 刷机逻辑配置文件
+# 适配者仅需：改顶部机型名 + 增删下面的指令行 即可完成适配
+device:OP5551L1
+
+# 先进入bootloader，优先刷写recovery分区 (单槽刷写)
+bootloader
+-recovery
+
+# 自动重启进入fastbootd，刷写所有核心分区+逻辑分区（核心步骤，不可乱序）
+# 规则：_ab = 双槽刷写(AB分区)  |  del = 删除旧分区  |  add 1M = 创建分区(大小1M)  不指定_ab为默认槽位或A-Only
+fastbootd
+-abl_ab
+-aop_ab
+-aop_config_ab
+-bluetooth_ab
+-boot_ab
+-cpucp_ab
+-devcfg_ab
+-dsp_ab
+-dtbo_ab
+-engineering_cdt_ab
+-featenabler_ab
+-hyp_ab
+-imagefv_ab
+-keymaster_ab
+-oplusstanvbk_ab
+-oplus_sec_ab
+-qupfw_ab
+-shrm_ab
+-splash_ab
+-tz_ab
+-uefi_ab
+-uefisecapp_ab
+-vendor_boot_ab
+-xbl_ab
+-xbl_config_ab
+-xbl_ramdump_ab
+
+# ---- 逻辑分区：先删除所有旧分区+COW残留 (必须先删后建，防砖核心) ----
+-my_bigball del
+-my_carrier del
+-my_company del
+-my_engineering del
+-my_heytap del
+-my_manifest del
+-my_preload del
+-my_product del
+-my_region del
+-my_stock del
+-odm del
+-odm_dlkm del
+-product del
+-system del
+-system_ext del
+-vendor del
+-vendor_dlkm del
+
+# ---- 逻辑分区：创建新分区 (和上面删除的分区一一对应，顺序一致) ----
+-my_bigball add 1M
+-my_carrier add 1M
+-my_company add 1M
+-my_engineering add 1M
+-my_heytap add 1M
+-my_manifest add 1M
+-my_preload add 1M
+-my_product add 1M
+-my_region add 1M
+-my_stock add 1M
+-odm add 1M
+-odm_dlkm add 1M
+-product add 1M
+-system add 1M
+-system_ext add 1M
+-vendor add 1M
+-vendor_dlkm add 1M
+-my_bigball
+-my_carrier
+-my_company
+-my_engineering
+-my_heytap
+-my_manifest
+-my_preload
+-my_product
+-my_region
+-my_stock
+-odm 
+-odm_dlkm
+-product
+-system
+-system_ext
+-vendor
+-vendor_dlkm
+
+# ---- AVB校验分区：双槽刷写 + 禁用AVB2校验 (disable = 必加，第三方包防卡屏) ----
+-vbmeta_ab disable
+-vbmeta_system_ab disable
+-vbmeta_vendor_ab disable
+
+# 自动重启回bootloader模式，刷写基带分区 (最后刷基带，避免信号问题)
+bootloader
+-modem_ab
+
+# 切换槽位
+set-a
+
+# 重启进入系统 (所有步骤完成后最后执行)
+system
