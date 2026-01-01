@@ -37,6 +37,8 @@
 - 示例：-vbmeta_ab disable、-vbmeta_system_ab disable、-vbmeta_vendor_ab disable。
 
 #### 四、收尾固定指令
+
+- set-a(b)：切换槽位，作用为指定启动槽位，为可选项。
 - 重启指令：system，作用为刷机操作完成后重启设备进入系统，为可选项。
 
 ### 模式权限硬性规则-全机型通用
