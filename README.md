@@ -117,23 +117,23 @@ fastbootd
 -vendor add 1M
 -vendor_dlkm add 1M
 
--my_bigball
--my_carrier
--my_company
--my_engineering
--my_heytap
--my_manifest
--my_preload
--my_product
--my_region
--my_stock
--odm 
--odm_dlkm
--product
--system
--system_ext
--vendor
--vendor_dlkm
+-my_bigball_a
+-my_carrier_a
+-my_company_a
+-my_engineering_a
+-my_heytap_a
+-my_manifest_a
+-my_preload_a
+-my_product_a
+-my_region_a
+-my_stock_a
+-odm _a
+-odm_dlkm_a
+-product_a
+-system_a
+-system_ext_a
+-vendor_a
+-vendor_dlkm_a
 
 -vbmeta_ab disable
 -vbmeta_system_ab disable
