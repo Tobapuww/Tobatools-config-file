@@ -141,6 +141,8 @@ fastbootd
 
 bootloader
 -modem_ab
+#指定启动槽位
+set-a
 
 system
 ```
